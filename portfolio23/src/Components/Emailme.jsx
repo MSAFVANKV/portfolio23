@@ -4,6 +4,15 @@ import axios from 'axios';
 import { useFormik, Formik, Form, Field } from 'formik';
 import { SignupValidation } from './SignupValidation';
 
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 2));
+      [array[i], array[j]] = [array[j], array[i]]; // Swap elements
+  }
+  return array;
+}
+
+
 const initialValues = {
     name: '',
     number: '',
@@ -20,12 +29,21 @@ function Emailme() {
 
     emailjs.sendForm('service_xw3j42s', 'template_119bt0n', form.current, 'YKVaKZLARdCQ3k1OM')
       .then((result) => {
+        alert("mail sended to User!")
           console.log(result.text);
       }, (error) => {
           console.log(error.text);
       });
   };
   
+  const imagePaths = [
+    "/nodejslogo.png",
+    "/re.png",
+    "/mongo.png",
+    "/js.png",
+    "/boostrap.png",
+    "/css.png"
+];
     // const formik = useFormik({
     //     initialValues: initialValues,
     //     validationSchema: SignupValidation,
@@ -45,7 +63,9 @@ function Emailme() {
     // });
 
     return (
-        <div className='flex bg-[#6E3CF5] h-screen mt-[90px] overflow-y-auto w-[445px] justify-center items-start'>
+      <>
+        <div className=' bg-[#6E3CF5] h-[100%] '>
+          <div className="flex justify-center items-start mt-[90px] overflow-y-auto w-[445px] ">
             <Formik
                 initialValues={initialValues}
                 validationSchema={SignupValidation}>
@@ -73,9 +93,47 @@ function Emailme() {
                     </Form>
                 )}
             </Formik>
+            </div>
+            {/* <div className="hidden md:block">
+        <img src="/nodejslogo.png" className='w-20 ms-5 my-5' />
+        <img src="/re.png" className='w-[100px] ms-[6rem] my-5' />
+        <img src="/mongo.png" className='] ms-[6rem] my-5' />
+        <img src="/js.png" className='] ms-[6rem] my-5' />
+
+        </div> */}
+            {/* <div className="hidden md:block">
+                {imagePaths.map((path, index) => (
+                    <img key={index} src={path} className={getImageClass(path)} alt="" />
+                ))}
+
+              
+                {imagePaths.map((path, index) => (
+                    <img key={index + 4} src={path} className={getImageClass(path)} alt="" />  
+                ))}
+            </div> */}
+            
+            <div className="hidden md:block ">
+                {shuffleArray([...imagePaths]).map((path, index) => (
+                    <img key={index} src={path} className={getImageClass(path)} alt="" />
+                ))}
+
+                {shuffleArray([...imagePaths]).map((path, index) => (
+                    <img key={index + 4} src={path} className={getImageClass(path)} alt="" />
+                ))}
+            </div>
+
         </div>
+
+        </>
     );
 }
+function getImageClass(path) {
+  if (path === "/nodejslogo.png") return 'w-20 ms-5 my-5 ';
+  if (path === "/re.png") return 'w-[100px] ms-[6rem] my-5';
+  if (path === "/boostrap.png") return 'w-[12rem] ms-[6rem] my-5';
 
+  // Add other conditions if you have more specific class names for other images
+  return 'w-[13rem] ms-[6rem] my-5 shadow';  // default class
+}
 
 export default Emailme;
