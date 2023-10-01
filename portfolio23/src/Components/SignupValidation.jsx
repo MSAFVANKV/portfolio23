@@ -14,7 +14,7 @@ export const SignupValidation = Yup.object({
         .min(3, "Email should be at least 3 characters long")
         .required("Please Enter Email"),
     
-    content: Yup.string()
+    message: Yup.string()
         .min(3, "Content should be at least 3 characters long")
         .required("Please Enter Content"),
 });

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
 import Header from './Components/Header'
 import Sidebar from './Components/Sidebar'
@@ -7,8 +7,19 @@ import Introduction from './Components/Introduction'
 import About from './Components/About'
 import Services from './Components/Services'
 import Progressbar from './Components/Progressbar'
+import Axios from 'axios'
 
 function App() {
+
+  const [data, setData]=useState("")
+  const getData = async() => {
+    const response = await Axios.get(`http://localhost:3001`)
+    setData(response.data)
+  }
+
+  useEffect(() => {
+    getData();
+  },[])
   const [showEmail, setShowEmail] = useState(false);
   const toggleEmailDisplay = () => {
     setShowEmail(prev => !prev);
@@ -16,7 +27,7 @@ function App() {
 
   return (
     <>
-      
+       <div>{data}</div>
     <Header onEmailClick={toggleEmailDisplay}/>
     <Sidebar/>
       <div className="ml-[90px] grid grid-cols-1 md:grid-cols-3">
