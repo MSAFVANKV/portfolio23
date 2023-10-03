@@ -8,6 +8,7 @@ import About from './Components/About'
 import Services from './Components/Services'
 import Progressbar from './Components/Progressbar'
 import Axios from 'axios'
+import Skills from './Components/Skills'
 
 function App() {
 
@@ -35,6 +36,7 @@ function App() {
           <Introduction/>
           <About/>
           <Services/>
+          <Skills/>
 
         </div>
         <div className="hidden md:block">

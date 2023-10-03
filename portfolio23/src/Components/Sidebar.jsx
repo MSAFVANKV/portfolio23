@@ -7,8 +7,8 @@ import { IoLogoGithub, IoLogoLinkedin, IoLogoInstagram,
 function Sidebar() {
   return (
     <div className='w-[90px] h-screen
-    bg-white border-r-[1px] mt-[90px] fixed flex flex-col justify-around
-     items-center'>
+    bg-white border-r-[1px] mt-[90px] fixed sm:flex flex-col justify-around
+     items-center hidden'>
 
         <h2 className='-rotate-90 tracking-widest'>HOMEPAGE</h2>
         <div className="flex flex-col gap-7 mb-10

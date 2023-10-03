@@ -10,5 +10,7 @@ export default{
     BACKEND_DESC:"Developing application backend and Server side development using various topic",
 
     ONLINE:"ONLINE WORK",
-    ONLINE_DESC:"As a focused Developer giving my Service as through Online ....."
+    ONLINE_DESC:"As a focused Developer giving my Service as through Online .....",
+
+    SKILLS:""
 }

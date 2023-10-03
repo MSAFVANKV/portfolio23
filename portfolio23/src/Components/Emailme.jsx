@@ -22,19 +22,29 @@ const initialValues = {
 
 function Emailme() {
 
-  const form = useRef();
+//   const form = useRef();
 
-  const sendEmail = (e) => {
-    e.preventDefault();
+//   const sendEmail = (e) => {
+//     e.preventDefault();
 
-    emailjs.sendForm('service_xw3j42s', 'template_119bt0n', form.current, 'YKVaKZLARdCQ3k1OM')
-      .then((result) => {
-        alert("mail sended to User!")
-          console.log(result.text);
-      }, (error) => {
-          console.log(error.text);
-      });
-  };
+//     emailjs.sendForm('service_xw3j42s', 'template_119bt0n', form.current, 'YKVaKZLARdCQ3k1OM')
+//       .then((result) => {
+//         alert("mail sended to User!")
+//           console.log(result.text);
+//       }, (error) => {
+//           console.log(error.text);
+//       });
+//   };
+const sendEmail = (values) => {
+    emailjs.send('service_xw3j42s', 'template_119bt0n', values, 'YKVaKZLARdCQ3k1OM')
+        .then((result) => {
+            alert("Mail sent to User!");
+            window.location.reload();
+            console.log(result.text);
+        }, (error) => {
+            console.log(error.text);
+        });
+};
   
   const imagePaths = [
     "/nodejslogo.png",
@@ -65,16 +75,20 @@ function Emailme() {
     return (
       <>
         <div className=' bg-[#6E3CF5] h-[100%] '>
-          <div className="flex justify-center items-start mt-[90px] overflow-y-auto w-[445px] ">
-            <Formik
-                initialValues={initialValues}
-                validationSchema={SignupValidation}>
+          <div className="flex justify-center items-start mt-[90px] overflow-y-auto  ">
+          <Formik
+                    initialValues={initialValues}
+                    validationSchema={SignupValidation}
+                    onSubmit={(values, { setSubmitting }) => {
+                        sendEmail(values);
+                        setSubmitting(false);
+                    }}>
                 {({ errors }) => (
-                    <Form ref={form} onSubmit={sendEmail} >  {/* Make sure to use formik's handleSubmit */}
-                        <div className="my-[50px] ">
+                    <Form  className='w-[300px]'>  {/* Make sure to use formik's handleSubmit */}
+                        <div className="my-[50px] w-fit">
                             <label className='block text-sm font-bold mb-2'>Full Name</label>
                             <Field type="text" name='name' className='w-full p-3 rounded-lg border border-gray-200 mb-4'></Field>
-                            {errors.name && <small className='m-0 p-0 text-red-700 font-bold'>{errors.name}</small>}
+                            {errors.name && <small className='inline-block m-0 p-0 text-red-700 font-bold'>{errors.name}</small>}
 
                             <label className='block text-sm font-bold mb-2'>Number</label>
                             <Field type="number" name='number' className='w-full p-3 rounded-lg border border-gray-200 mb-4'></Field>

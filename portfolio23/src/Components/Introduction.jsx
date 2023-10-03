@@ -1,8 +1,9 @@
 import React from 'react'
 
+
 function Introduction() {
   return (
-    <div className='flex m-[90px] justify-center items-center flex-col'>
+    <div className='flex m-[90px] justify-center items-center flex-col' id='HOME'>
         <div className="h-[120px] border-r-[1px] "></div>
         <div className="w-[5px] h-[5px] bg-green-500 rounded-full"></div>
         <h2 className='mt-5 text-black font-medium
